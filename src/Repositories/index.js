@@ -86,13 +86,18 @@ const useReposFetch = user => {
     try {
       const { data } = await axios.get(`https://api.github.com/users/${user}/repos`)
       setRepos(data)
+      localStorage.setItem('@users', JSON.stringify(data))
     } finally {
       setFetching(false)
     }
   }
 
   useEffect(() => {
-    fetchRepos()
+    if (!navigator.onLine) {
+      setRepos(JSON.parse(localStorage.getItem('@users')) || [])
+    } else {
+      fetchRepos()
+    }
   }, [user])
 
   return [isFetchingRepos, repos]
