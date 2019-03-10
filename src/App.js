@@ -1,7 +1,28 @@
 import React from 'react'
+import { createGlobalStyle } from 'styled-components'
+
+import Repositories from './Repositories'
+
+const GlobalStyle = createGlobalStyle`
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    font-family: 'Open Sans', sans-serif;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background-color: #F5F5F5;
+  }
+`
 
 const App = () => (
-  <h2>PWA Play</h2>
+  <>
+    <GlobalStyle />
+    <Repositories />
+  </>
 )
 
 export default App
